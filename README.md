@@ -1,5 +1,5 @@
 # Layered Architecture
-This is to demonstrate Layered Architecure for GDSE 59 & 60 Students. Hope you enjoy
+This is to learn Layerd Architecture
 
 ## Version
 1.0.0
