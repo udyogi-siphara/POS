@@ -46,6 +46,7 @@ public class ManageCustomersFormController {
 
     //comment here new comment
 
+//this is for initializing the UI
     public void initialize() {
         tblCustomers.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("id"));
         tblCustomers.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("name"));
