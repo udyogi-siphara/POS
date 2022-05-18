@@ -77,9 +77,6 @@ public class ManageCustomersFormController {
         /*Get all customers*/
         try {
 
-            //Tight coupling
-            //DI
-
             ArrayList<CustomerDTO> allCustomer = customerBO.getAllCustomers();
 
             for (CustomerDTO customer : allCustomer) {
@@ -154,8 +151,6 @@ public class ManageCustomersFormController {
                 if (existCustomer(id)) {
                     new Alert(Alert.AlertType.ERROR, id + " already exists").show();
                 }
-                //Tight coupling
-                //DI
 
                 customerBO.saveCustomer(new CustomerDTO(id,name,address));
 
@@ -173,8 +168,6 @@ public class ManageCustomersFormController {
                 if (!existCustomer(id)) {
                     new Alert(Alert.AlertType.ERROR, "There is no such customer associated with the id " + id).show();
                 }
-                //Tight coupling
-                //DI
 
                 customerBO.updateCustomer(new CustomerDTO(id,name,address));
 
@@ -195,8 +188,6 @@ public class ManageCustomersFormController {
 
 
     boolean existCustomer(String id) throws SQLException, ClassNotFoundException {
-        //Tight coupling
-        //DI
 
         return customerBO.existCustomer(id);
     }
@@ -209,9 +200,6 @@ public class ManageCustomersFormController {
             if (!existCustomer(id)) {
                 new Alert(Alert.AlertType.ERROR, "There is no such customer associated with the id " + id).show();
             }
-
-            //Tight coupling
-            //DI
 
             customerBO.deleteCustomer(id);
             tblCustomers.getItems().remove(tblCustomers.getSelectionModel().getSelectedItem());
@@ -227,9 +215,7 @@ public class ManageCustomersFormController {
 
     private String generateNewId() {
         try {
-            //Tight coupling
-            //DI
-            
+
             return customerBO.generateCustomerNewId();
 
         } catch (SQLException e) {
