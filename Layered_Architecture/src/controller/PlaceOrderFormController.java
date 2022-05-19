@@ -1,10 +1,12 @@
 package controller;
 
+import bo.custom.ItemBO;
 import bo.custom.PurchaseOrderBO;
 import bo.custom.impl.PurchaseOrderBOImpl;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
+import dao.DAOFactory;
 import db.DBConnection;
 import javafx.application.Platform;
 import javafx.beans.property.ReadOnlyObjectWrapper;
@@ -56,7 +58,8 @@ public class PlaceOrderFormController {
     public Label lblTotal;
     private String orderId;
 
-    private final PurchaseOrderBO purchaseOrderBO = new PurchaseOrderBOImpl();
+    PurchaseOrderBO purchaseOrderBO = (PurchaseOrderBO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.ITEM);
+
 
     public void initialize() throws SQLException, ClassNotFoundException {
 

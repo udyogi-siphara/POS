@@ -19,20 +19,14 @@ import java.util.List;
 
 public class PurchaseOrderBOImpl implements PurchaseOrderBO {
 
-    CustomerDAO customerDAO = (CustomerDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.CUSTOMER);
-    ItemDAO itemDAO = (ItemDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.ITEM);
-    OrderDAO orderDAO = (OrderDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.ORDER);
-    QueryDAO queryDAO = (QueryDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.QUERYDAO);
-    ItemDAO orderDAO1 = (ItemDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.ITEM);
-    OrderDetailDAO orderDAODetail = (OrderDetailDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.ORDERDETAILS);
-    
+    private CustomerDAO customerDAO = (CustomerDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.CUSTOMER);
+    private ItemDAO itemDAO = (ItemDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.ITEM);
+    private OrderDAO orderDAO = (OrderDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.ORDER);
+    private QueryDAO queryDAO = (QueryDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.QUERYDAO);
+    private OrderDetailDAO orderDetailDAO = (OrderDetailDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.ORDERDETAILS);
+
     @Override
     public boolean purchaseOrder(String orderId, LocalDate orderDate, String customerId, List<OrderDetailDTO> orderDetails) throws SQLException, ClassNotFoundException {
-
-
-
-
-
         /*Transaction*/
         Connection connection = DBConnection.getDbConnection().getConnection();
 
@@ -42,7 +36,7 @@ public class PurchaseOrderBOImpl implements PurchaseOrderBO {
         }
 
         connection.setAutoCommit(false);
-        boolean save = orderDAO1.save(new OrderDTO(orderId,orderDate,customerId));
+        boolean save = orderDAO.save(new OrderDTO(orderId,orderDate,customerId));
 
         if (!save) {
             connection.rollback();
@@ -50,7 +44,7 @@ public class PurchaseOrderBOImpl implements PurchaseOrderBO {
             return false;
         }
         for (OrderDetailDTO detail : orderDetails) {
-            boolean save1 =  orderDetailsDAO.save(detail);
+            boolean save1 =  orderDetailDAO.save(detail);
             if (!save1) {
                 connection.rollback();
                 connection.setAutoCommit(true);
