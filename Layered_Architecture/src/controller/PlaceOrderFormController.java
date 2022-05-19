@@ -1,5 +1,6 @@
 package controller;
 
+import bo.custom.BOFactory;
 import bo.custom.ItemBO;
 import bo.custom.PurchaseOrderBO;
 import bo.custom.impl.PurchaseOrderBOImpl;
@@ -58,8 +59,7 @@ public class PlaceOrderFormController {
     public Label lblTotal;
     private String orderId;
 
-    PurchaseOrderBO purchaseOrderBO = (PurchaseOrderBO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.ITEM);
-
+    PurchaseOrderBO purchaseOrderBO = (PurchaseOrderBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.PLACEORDER);
 
     public void initialize() throws SQLException, ClassNotFoundException {
 

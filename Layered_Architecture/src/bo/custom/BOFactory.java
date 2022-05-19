@@ -26,7 +26,7 @@ public class BOFactory {
         CUSTOMER,ITEM,PLACEORDER
     }
 
-    public SuperBO getDAO(BOFactory.BOTypes types){
+    public SuperBO getBO(BOFactory.BOTypes types){
         switch (types){
             case CUSTOMER:
                 return new CustomerBOImpl();
